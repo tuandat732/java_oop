@@ -1,10 +1,10 @@
-import tklibs.SpriteUtils;
+package game;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 /**
  * Created by huynq on 7/4/17.
@@ -12,10 +12,25 @@ import java.awt.image.BufferedImage;
  * alt + enter: fix code;
  * (fn)+ shift + f6 : rename
  * ctrl + alt + l: format code
+ *
+ * Quy tắc đặt tên
+ *  class: PlayerBullet (pascal case)
+ *  biến/hàm: limitPositionAbc (camel case)
+ *  packed: my_game (snake case)
+ *
+ *  tạo hằng : final + loại(int,float,...) + tên biến(nên viết hoa hết giữa các từ có gạch dưới) = giá trị
  */
 
 public class Program {
     public static void main(String[] args) {
+//        ArrayList<String> strings =new ArrayList<>(); //size=0
+        // cac ham hay dung
+        //.add()
+        //.remove()
+        //.get()
+        //.size()
+
+
         //tao cua so , an JFrame de import javax.swing, trong cua so se co nhieu ô con, gọi là pamel
         JFrame window =new JFrame();
         window.setTitle("game");
@@ -39,6 +54,9 @@ public class Program {
                 if(e.getKeyCode()==KeyEvent.VK_D){
                     KeyEventPress.isRightPress=true;
                 }
+                if(e.getKeyCode()==KeyEvent.VK_SPACE){
+                    KeyEventPress.isFirePress=true;
+                }
             }
 
             @Override
@@ -54,6 +72,9 @@ public class Program {
                 }
                 if(e.getKeyCode()==KeyEvent.VK_D){
                     KeyEventPress.isRightPress=false;
+                }
+                if(e.getKeyCode()==KeyEvent.VK_SPACE){
+                    KeyEventPress.isFirePress=false;
                 }
             }
         });

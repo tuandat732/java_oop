@@ -1,3 +1,5 @@
+package game;
+
 public class Vector2D {
     public double x;
     public double y;
@@ -10,7 +12,12 @@ public class Vector2D {
         this.y=y;
     }
 
-    public void add(double x,double y){
+    @Override
+    public String toString() {
+        return "(x: "+x+",y: "+y+")";
+    }
+
+    public void add(double x, double y){
         this.x += x;
         this.y += y;
     }
@@ -33,6 +40,7 @@ public class Vector2D {
         this.x=x;
         this.y=y;
     }
+
 
     public double getLength(){
         return Math.sqrt(x*x+y*y);
