@@ -1,16 +1,15 @@
-package game;
+package game.player;
 
+import game.GameObject;
+import game.KeyEventPress;
+import game.Vector2D;
 import tklibs.Mathx;
 import tklibs.SpriteUtils;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public class Player {
-    BufferedImage image;
-    Vector2D position;
-    ArrayList<PlayerBullet> bullets;
+public class Player extends GameObject {
     //private (protected) BufferedImange image;
 //    public BufferedImage getImage(){
 //        return image;
@@ -21,22 +20,20 @@ public class Player {
 
     public Player(){
         image= SpriteUtils.loadImage("assets/images/players/straight/0.png");
-        position=new Vector2D(300,300);
-        bullets = new ArrayList<>();
+        position.set(300,300);
     }
 
+    @Override
     public void render(Graphics g){
-        g.drawImage(image,(int)position.x,(int)position.y,null);
-        for (int i=0;i< bullets.size();i++){
-            PlayerBullet bullet = bullets.get(i);
-            bullet.render(g);
-        }
+//        g.drawImage(image,(int)position.x,(int)position.y,null);
+        super.render(g); // g.drawImage() super:ke thua tu cha
+
     }
 
+    @Override
     public void run(){
         this.move();
         this.limitPosition();
-        this.bulletsRun();
         this.fire();
     }
 
@@ -47,17 +44,10 @@ public class Player {
             PlayerBullet bullet = new PlayerBullet();
             bullet.position.set(this.position.x,this.position.y);
 
-            bullets.add(bullet);
             count=0;
         }
     }
 
-    private void bulletsRun() {
-        for (int i=0;i<bullets.size();i++){
-            PlayerBullet bullet =bullets.get(i);
-            bullet.run();
-        }
-    }
 
     public void move(){
         //dieu khuyen

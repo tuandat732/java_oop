@@ -43,38 +43,38 @@ public class Program {
             @Override
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode()==KeyEvent.VK_W){
-                    KeyEventPress.isUpPress=true;
+                    Settings.isUpPress=true;
                 }
                 if(e.getKeyCode()==KeyEvent.VK_S){
-                    KeyEventPress.isDownPress=true;
+                    Settings.isDownPress=true;
                 }
                 if(e.getKeyCode()==KeyEvent.VK_A){
-                    KeyEventPress.isLeftPress=true;
+                    Settings.isLeftPress=true;
                 }
                 if(e.getKeyCode()==KeyEvent.VK_D){
-                    KeyEventPress.isRightPress=true;
+                    Settings.isRightPress=true;
                 }
                 if(e.getKeyCode()==KeyEvent.VK_SPACE){
-                    KeyEventPress.isFirePress=true;
+                    Settings.isFirePress=true;
                 }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
                 if(e.getKeyCode()==KeyEvent.VK_W){
-                    KeyEventPress.isUpPress=false;
+                    Settings.isUpPress=false;
                 }
                 if(e.getKeyCode()==KeyEvent.VK_S){
-                    KeyEventPress.isDownPress=false;
+                    Settings.isDownPress=false;
                 }
                 if(e.getKeyCode()==KeyEvent.VK_A){
-                    KeyEventPress.isLeftPress=false;
+                    Settings.isLeftPress=false;
                 }
                 if(e.getKeyCode()==KeyEvent.VK_D){
-                    KeyEventPress.isRightPress=false;
+                    Settings.isRightPress=false;
                 }
                 if(e.getKeyCode()==KeyEvent.VK_SPACE){
-                    KeyEventPress.isFirePress=false;
+                    Settings.isFirePress=false;
                 }
             }
         });
