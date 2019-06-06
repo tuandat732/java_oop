@@ -11,10 +11,7 @@ public class EnemyBullet extends GameObject {
 
     public EnemyBullet(){
         image= SpriteUtils.loadImage("assets/images/enemies/bullets/green.png");
+        velocity.set(0,5);
     }
 
-    @Override
-    public void run(){
-        position.y+=5;
-    }
 }

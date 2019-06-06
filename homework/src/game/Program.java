@@ -1,5 +1,7 @@
 package game;
 
+import game.player.Player;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -22,6 +24,15 @@ import java.util.ArrayList;
  */
 
 public class Program {
+//    public static <E> E getSomething(Class<E> cls){
+//        // E ~ String| Player|GameObject...
+//        // cls ~ String.class| Player.class|...
+//        try {
+//            return cls.getConstructor().newInstance();
+//        } catch (Exception ex){
+//            return null;
+//        }
+//    }
     public static void main(String[] args) {
 //        ArrayList<String> strings =new ArrayList<>(); //size=0
         // cac ham hay dung
@@ -43,38 +54,38 @@ public class Program {
             @Override
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode()==KeyEvent.VK_W){
-                    Settings.isUpPress=true;
+                    KeyEventPress.isUpPress=true;
                 }
                 if(e.getKeyCode()==KeyEvent.VK_S){
-                    Settings.isDownPress=true;
+                    KeyEventPress.isDownPress=true;
                 }
                 if(e.getKeyCode()==KeyEvent.VK_A){
-                    Settings.isLeftPress=true;
+                    KeyEventPress.isLeftPress=true;
                 }
                 if(e.getKeyCode()==KeyEvent.VK_D){
-                    Settings.isRightPress=true;
+                    KeyEventPress.isRightPress=true;
                 }
                 if(e.getKeyCode()==KeyEvent.VK_SPACE){
-                    Settings.isFirePress=true;
+                    KeyEventPress.isFirePress=true;
                 }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
                 if(e.getKeyCode()==KeyEvent.VK_W){
-                    Settings.isUpPress=false;
+                    KeyEventPress.isUpPress=false;
                 }
                 if(e.getKeyCode()==KeyEvent.VK_S){
-                    Settings.isDownPress=false;
+                    KeyEventPress.isDownPress=false;
                 }
                 if(e.getKeyCode()==KeyEvent.VK_A){
-                    Settings.isLeftPress=false;
+                    KeyEventPress.isLeftPress=false;
                 }
                 if(e.getKeyCode()==KeyEvent.VK_D){
-                    Settings.isRightPress=false;
+                    KeyEventPress.isRightPress=false;
                 }
                 if(e.getKeyCode()==KeyEvent.VK_SPACE){
-                    Settings.isFirePress=false;
+                    KeyEventPress.isFirePress=false;
                 }
             }
         });

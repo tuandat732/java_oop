@@ -46,11 +46,11 @@ public class Rectangle {
                 && other.top() <= this.bot();
     }
 
-//    public static void main(String[] args) {
-//        Rectangle r1=new Rectangle(3,3,5,5);
-//        Rectangle r2=new Rectangle(4,4,5,5);
-//        Rectangle r3=new Rectangle(-3,-3,5,5);
-//        System.out.println(r1.intersec(r2));
-//        System.out.println(r1.intersec(r3));
-//    }
+    public static void main(String[] args) {
+        Rectangle r1=new Rectangle(3,3,5,5);
+        Rectangle r2=new Rectangle(4,4,5,5);
+        Rectangle r3=new Rectangle(-3,-3,5,5);
+        System.out.println(r1.intersec(r2));
+        System.out.println(r1.intersec(r3));
+    }
 }

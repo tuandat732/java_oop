@@ -13,6 +13,7 @@ public class Background extends GameObject {
         image = SpriteUtils.loadImage("assets/images/background/0.png");
 //        position=new Vector2D(0,600-3109);
         position.set(0,Settings.GAME_HEIGHT-Settings.BACKGROUND_HEIGHT);
+        velocity.set(0,10);
     }
 
 //    public void render(Graphics g){
@@ -22,6 +23,6 @@ public class Background extends GameObject {
     @Override //viet de lai ham run trong GameObject
     public void run(){
         if (position.y >= 0) position.y = Settings.GAME_HEIGHT-Settings.BACKGROUND_HEIGHT;
-        else position.y += 10;
+        else super.run();
     }
 }

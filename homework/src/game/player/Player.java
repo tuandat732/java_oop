@@ -1,10 +1,10 @@
 package game.player;
 
 import game.GameObject;
+import game.KeyEventPress;
 import game.Settings;
 import game.Vector2D;
-import game.enemy.Enemy;
-import game.enemy.EnemyBullet;
+import game.physics.BoxCollider;
 import tklibs.Mathx;
 import tklibs.SpriteUtils;
 import java.awt.*;
@@ -19,35 +19,39 @@ public class Player extends GameObject {
 //    public void setImage(BufferedImage image){
 //        this.image =image;
 //    }
-
+    int hp=20;
     public Player(){
         image= SpriteUtils.loadImage("assets/images/players/straight/0.png");
-        position.set(170,500);
+        position.set(300,300);
+        hitBox= new BoxCollider(this,32,48);
     }
 
-//    @Override
-//    public void render(Graphics g){
-//        super.render(g); // g.drawImage() super:ke thua tu cha
-//
-//    }
+    @Override
+    public void render(Graphics g){
+//        g.drawImage(image,(int)position.x,(int)position.y,null);
+        super.render(g); // g.drawImage() super:ke thua tu cha
+
+    }
 
     @Override
     public void run(){
+        super.run();
         this.move();
         this.limitPosition();
         this.fire();
+        super.move();
     }
 
     int count=0;
     private void fire() {
         count++;
-        if (Settings.isFirePress && count>20){
-            PlayerBullet bullet = new PlayerBullet();
-            PlayerBullet bullet1 =new PlayerBullet("assets/images/player-bullets/a/0.png",1);
-            PlayerBullet bullet2 =new PlayerBullet("assets/images/player-bullets/a/2.png",2);
-            bullet.position.set(this.position.x,this.position.y);
-            bullet1.position.set(this.position.x-50,this.position.y+30);
-            bullet2.position.set(this.position.x+50,this.position.y+30);
+        if (KeyEventPress.isFirePress && count>20){
+            for (int i=0;i<Settings.numberBullet;i++){
+                PlayerBullet bullet=new PlayerBullet();
+                bullet.position.set(this.position.x+(Settings.startX-Settings.stepX*i),this.position.y);
+                bullet.velocity.setAngle(Math.toRadians(Settings.startAngle-Settings.stepAngle*i));
+            }
+
             count=0;
         }
     }
@@ -55,14 +59,32 @@ public class Player extends GameObject {
 
     public void move(){
         //dieu khuyen
-        if(Settings.isUpPress)
-            position.y-=2;
-        if(Settings.isDownPress)
-            position.y+=2;
-        if(Settings.isLeftPress)
-            position.x-=2;
-        if(Settings.isRightPress)
-            position.x+=2;
+        double vx=0;
+        double vy=0;
+        if(KeyEventPress.isUpPress)
+//            position.y-=2;
+            vy-=2;
+        if(KeyEventPress.isDownPress)
+//            position.y+=2;
+            vy+=2;
+        if(KeyEventPress.isLeftPress)
+//            position.x-=2;
+            vx-=2;
+        if(KeyEventPress.isRightPress)
+//            position.x+=2;
+            vx+=2;
+
+        velocity.set(vx,vy);
+        velocity.setLength(2);
+        if(velocity.x<0)
+            for (int i=0;i<=5;i++)
+                image=SpriteUtils.loadImage("assets/images/players/left/"+i+".png");
+        else if(velocity.x>0)
+            for (int i=0;i<=5;i++)
+                image=SpriteUtils.loadImage("assets/images/players/right/"+i+".png");
+        else
+            for (int i=0;i<=6;i++)
+                image=SpriteUtils.loadImage("assets/images/players/straight/"+i+".png");
     }
 
     public void limitPosition(){
@@ -71,10 +93,11 @@ public class Player extends GameObject {
         position.y= Mathx.clamp(position.y,0,600-48);
     }
 
-    public void vacham(){
-        Rectangle r1=new Rectangle((int)this.position.x,(int)this.position.y,(int)Settings.PLAYER_WIDTH,(int)Settings.PLAYER_HEIGHT);
-        Rectangle r2=new Rectangle((int)Enemy.bullet.position.x,(int)Enemy.bullet.position.y,10,10);
-        if(r1.intersects(r2)) objects.remove(this);
+    public void takeDamege(int damege){
+        hp--;
+        if(hp<0){
+            hp=0;
+            this.deactive();
+        }
     }
-
 }

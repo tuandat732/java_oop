@@ -1,5 +1,7 @@
 package game;
 
+import game.player.Player;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -22,6 +24,15 @@ import java.util.ArrayList;
  */
 
 public class Program {
+//    public static <E> E getSomething(Class<E> cls){
+//        // E ~ String| Player|GameObject...
+//        // cls ~ String.class| Player.class|...
+//        try {
+//            return cls.getConstructor().newInstance();
+//        } catch (Exception ex){
+//            return null;
+//        }
+//    }
     public static void main(String[] args) {
 //        ArrayList<String> strings =new ArrayList<>(); //size=0
         // cac ham hay dung
